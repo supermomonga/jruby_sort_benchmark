@@ -32,7 +32,7 @@ bm = Benchmark.new
 sorter = InsertionSort.new
 
 production = [10, 100, 1000, 5000, 10000, 100000, 200000, 300000, 400000]
-test       = [10, 100, 1000, 5000, 10000 ]
+test       = [10, 100, 1000, 10000, 50000 ]
 
 test.tap do |scales|
   puts "Random array"
