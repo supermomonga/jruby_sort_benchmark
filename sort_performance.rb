@@ -36,7 +36,6 @@ class Benchmark
 
   def bench sorter
     sorter.setup @dataset 
-    scale = @dataset.size
     @score = 0
     t1 = java.lang.System.nanoTime
     sorter.exec
@@ -47,7 +46,8 @@ class Benchmark
 
   def exec sorter, scales, datatypes = [:random, :identical, :asc, :desc], try = 3
     datatypes.each do |datatype|
-      puts "#{ datatype } array"
+      # puts "#{ datatype } array"
+      scores = []
       begin
         scales.each do |scale|
           score = try.times.inject(0) do |total|
@@ -55,10 +55,15 @@ class Benchmark
             score = bench sorter
             total += score
           end / try
-          puts "#{ score / 1000 / 1000 } milli seconds for sorting #{ scale } elements' array."
+          scores << score
+          # puts "#{ score / 1000 / 1000 } milli seconds for sorting #{ scale } elements' array."
         end
-      rescue
-        puts "Error: maybe stack too deep."
+      rescue => err
+        puts "Error: #{ err }"
+      end
+      puts "要素数,時間"
+      scales.zip(scores).each do |row|
+        puts row.join ','
       end
     end
   end
