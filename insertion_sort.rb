@@ -45,7 +45,7 @@ production.tap do |scales|
         score = bm.bench sorter
         total += score
       end / try
-      puts "#{ score } nano seconds for sorting #{ scale } elements' array."
+      puts "#{ score / 1000 / 1000 } milli seconds for sorting #{ scale } elements' array."
     end
   end
 end
