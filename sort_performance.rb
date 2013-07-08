@@ -55,13 +55,13 @@ class Benchmark
             score = bench sorter
             total += score
           end / try
-          scores << score
+          scores << score / 1000 / 1000
           # puts "#{ score / 1000 / 1000 } milli seconds for sorting #{ scale } elements' array."
         end
       rescue => err
         puts "Error: #{ err }"
       end
-      puts "要素数,時間"
+      puts "要素数,時間(ms)"
       scales.zip(scores).each do |row|
         puts row.join ','
       end
