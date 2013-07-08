@@ -45,20 +45,20 @@ class Benchmark
     @score
   end
 
-  def exec scales, datatypes = [:random, :identical, :asc, :desc], try = 3
+  def exec sorter, scales, datatypes = [:random, :identical, :asc, :desc], try = 3
     datatypes.each do |datatype|
       puts "#{ datatype } array"
       begin
         scales.each do |scale|
           score = try.times.inject(0) do |total|
-            bm.setup DataSet.new.send datatype, scale
-            score = bm.bench sorter
+            setup DataSet.new.send datatype, scale
+            score = bench sorter
             total += score
           end / try
           puts "#{ score / 1000 / 1000 } milli seconds for sorting #{ scale } elements' array."
         end
-      rescue
-        puts 'Error: Maybe stack over flow.'
+      rescue => err
+        puts "Error: #{ err }"
       end
     end
   end

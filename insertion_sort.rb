@@ -27,16 +27,15 @@ class InsertionSort
   end
 end
 
-ds = DataSet.new
 bm = Benchmark.new
 sorter = InsertionSort.new
 
-production = [10, 100, 1000, 5000, 10000, 100000, 200000, 300000, 400000]
+production = [10, 100, 1000, 5000, 10000, 100000, 200000]
 test       = [10, 100, 1000, 10000, 20000, 30000 ]
 
 try = 3
 
-bm.exec test, [:random, :identical, :asc, :desc], try
+bm.exec sorter, test, [:random, :identical, :asc, :desc], try
 
 # production.tap do |scales|
 #   [:random, :identical, :asc, :desc].each do |datatype|
