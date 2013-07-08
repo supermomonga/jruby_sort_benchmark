@@ -37,25 +37,21 @@ test       = [10, 100, 1000, 5000, 10000 ]
 test.tap do |scales|
   puts "Random array"
   scales.each do |scale|
-    scale = scale * 10
     bm.setup ds.random scale
     bm.bench sorter
   end
   puts "Idential array"
   scales.each do |scale|
-    scale = scale * 10
     bm.setup ds.identical scale
     bm.bench sorter
   end
   puts "Asc array"
   scales.each do |scale|
-    scale = scale * 10
     bm.setup ds.asc scale
     bm.bench sorter
   end
   puts "Desc array"
   scales.each do |scale|
-    scale = scale * 10
     bm.setup ds.desc scale
     bm.bench sorter
   end
