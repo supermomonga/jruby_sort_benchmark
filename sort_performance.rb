@@ -57,8 +57,8 @@ class Benchmark
           end / try
           puts "#{ score / 1000 / 1000 } milli seconds for sorting #{ scale } elements' array."
         end
-      rescue => err
-        puts "Error: #{ err }"
+      rescue
+        puts "Error: maybe stack too deep."
       end
     end
   end
