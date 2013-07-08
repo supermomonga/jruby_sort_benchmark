@@ -32,28 +32,21 @@ bm = Benchmark.new
 sorter = InsertionSort.new
 
 production = [10, 100, 1000, 5000, 10000, 100000, 200000, 300000, 400000]
-test       = [10, 100, 1000, 10000, 50000 ]
+test       = [10, 100, 1000, 10000, 20000, 30000 ]
 
-test.tap do |scales|
-  puts "Random array"
-  scales.each do |scale|
-    bm.setup ds.random scale
-    bm.bench sorter
-  end
-  puts "Idential array"
-  scales.each do |scale|
-    bm.setup ds.identical scale
-    bm.bench sorter
-  end
-  puts "Asc array"
-  scales.each do |scale|
-    bm.setup ds.asc scale
-    bm.bench sorter
-  end
-  puts "Desc array"
-  scales.each do |scale|
-    bm.setup ds.desc scale
-    bm.bench sorter
+try = 3
+
+production.tap do |scales|
+  [:random, :identical, :asc, :desc].each do |datatype|
+    puts "#{ datatype } array"
+    scales.each do |scale|
+      score = try.times.inject(0) do |total|
+        bm.setup ds.send datatype, scale
+        score = bm.bench sorter
+        total += score
+      end / try
+      puts "#{ score } nano seconds for sorting #{ scale } elements' array."
+    end
   end
 end
 

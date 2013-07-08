@@ -8,7 +8,7 @@ class DataSet
     if !@random_array || @random_array.size != scale
       @random_array = scale.times.map { rand 1..scale }
     end
-    @random_array
+    @random_array.clone
   end
 
   def identical scale
@@ -42,7 +42,7 @@ class Benchmark
     sorter.exec
     t2 = java.lang.System.nanoTime
     @score = t2 - t1
-    puts "#{ @score / 1000 / 1000 } milli seconds for sorting #{ scale } elements' array."
+    @score
   end
 
 end
