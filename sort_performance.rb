@@ -61,7 +61,7 @@ class Benchmark
       rescue => err
         puts "Error: #{ err }"
       end
-      puts "要素数,時間(ms)"
+      # puts "要素数,時間(ms)"
       scales.zip(scores).each do |row|
         puts row.join ','
       end
