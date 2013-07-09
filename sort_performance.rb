@@ -46,7 +46,7 @@ class Benchmark
 
   def exec sorter, scales, datatypes = [:random, :identical, :asc, :desc], try = 3
     datatypes.each do |datatype|
-      # puts "#{ datatype } array"
+      puts "#{ datatype } array"
       scores = []
       begin
         scales.each do |scale|
