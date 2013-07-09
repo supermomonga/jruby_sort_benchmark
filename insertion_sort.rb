@@ -31,12 +31,12 @@ bm = Benchmark.new
 sorter = InsertionSort.new
 
 production = [10, 100, 1000, 5000, 10000, 100000, 200000, 300000, 400000, 500000, 1000000]
-production = [10, 100, 1000, 5000, 10000, 100000, 200000]
+# production = [10, 100, 1000, 5000, 10000, 100000, 200000]
 test       = [10, 100, 1000, 10000, 20000, 30000, 40000, 50000, 100000 ]
 
 try = 3
 
-bm.exec sorter, test, [:asc, :desc], try
+bm.exec sorter, test, [:identical, :asc], try
 
 
 
