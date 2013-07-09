@@ -58,7 +58,7 @@ test       = [10, 100, 1000, 10000, 20000, 30000 ]
 
 try = 3
 
-bm.exec sorter, production, [:random], try
+bm.exec sorter, production, [:identical], try
 
 
 
